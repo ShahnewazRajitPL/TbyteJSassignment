@@ -1,124 +1,81 @@
+//steps
 let algorithm="Algorithm";
-//algorithm=45;
-//algorithm=[4,5,6,1,2,3,8]
-//algorithm={"charAt":"1",}
-
-//constant time
-/*function printFirstElement(array){
-    console.log(array[0]);
-}*/
-
-//2 logarithomic time-0(log(n))
-//3 Linear Time - 0(n)
-
-/*function printFirstElement(array){
-    for(let i=0;index<array.length;i++){
-        console.log(array[i]);
-    }
-}*/
-
-//4 Quasilinear time-o(n*log(n))
-
-//5 Quadratic Time=0(n^2)
-/*function printFirstElement(array){
-    for(let i=0;index<array.length;i++){
-        for(let j=0;index<array.length;j++)
-        console.log(array[i],array[j]);
-    }
-}*/
-
-//6 Exponential Time- 0(2^n)
-
-//[0,1,1,2,3,5,8,13]- fubonacci
-//steps-
-//1- Initialize an array with two elements[0,1]
-//2- Iterate given number(n) from 2 to n
-//3- Retrive last two elements from array end assgin two new values
-//4- Calculate the sum of (a+b)
-//5- Add Push the sum into the result array
-//6- Return result array
-
-/*function normalFib(n){
-    let result=[0,1];
-    for(let i=2;i<=n;i++)
-    {
-        const a=result[i-1];
-        const b=result[i-2];
-
-        result.push(a+b);
-    }
-    return result[n];
-}
-
-const fibRecursive=(n=> n<1 ? 0: n<=2?1: fibRecursive(n-1)+ fibRecursive(n-2));
-
-//memoizition
-
-function fibRecursive(n,memo={}){
-    if(n in memo)
-        return memo[n];
-
-    
-    if(n<=0) return [];
-        
-    
-    if(n===1) return [0];
-        
-    
-    if(n===2) return [1];
-        
-    
-        return (memo[n]=[...fibRecursive(n-1,memo),fibRecursive(n-1,memo).slice(-1)[0]+fibRecursive(n-2,memo).slice(-1)[0]]);
-
-    
-
-}
-
-algorithm="Fibonacci";
-
-
-
-//printFirstElement([4,5,6,7,8,9])
-
-document.getElementById("algorithm").innerHTML="Algorithm";
-document.getElementById("result").innerHTML=normalFib(10);*/
-
-"Hello World !"
-//Convert to object
-//{"H":1,"e":1,"l":3,"o":2,"":2,"W":1,"r":1,"d":1}
+let words ="Hi There";
+let newWords=words.replace(/[^\w]/g,"");
+console.log(newWords);
 
 //steps
-//1. Initialize an empty object, to store frequently count of each charachter in string
-//2. Initialize two variables one will hold the max count of character and other will hold the Max character
-//3. Iterate through input string 
-//4. Increase each string charachter value and assign empty charachter objects
-//5. Second Iteration, Iterate through charachater objects
-//6. Check Charachter value greater than max variable value 
-//        If yes then max will be the charachter value and maxCharachter will be the charachter 
-//8. Return maxcharachter
+//Helper function(buildChar(string))
+//step-1: Initialized an empty object
+//step-2: Remove any special characters (Including spaces) by using regular expressions
+//step-3: Convert the clean string into lowercase
+//step-4: Iterate over each Charahter in the cleaned string.
+//step-5: Check each charachter key is exists in the 'charachter'
+            //If it does ,increament its frequency count by 1
+            //If it doesn,t ser its frequency count to 1 in the 'charMap'
+//step-6: return charchterMap object
 
-function maxCharachter(str){
-    let charMap={};
-    let max=0;
-    let maxCharachter='';
+// Mainfunction Anagram Function
+//step-1: call the "Helper function(buildChar(strings))" store in "charMapA"
+//step-2: call the "Helper function(buildChar(strings))" store in "charMapB"
+//step-3: check if the number of unique keys (charachter) in "charMapA"=== "charMapB"
+            //If doesn't return false 
+//step-4: Iterate through each charachter in "charMapA"
+//step-5: for each charachter ,check if the frequency count fo charachters'charmapA' ==="CharMapB"
+        // If doesnt return false
+//step-6:After loop complete , return true;
 
-    for(let char of str){
-        charMap[char]=charMap[char]+1||1;
-
+function buildCharMap(str){
+    const charMap={};
+    for(let char of str.replace(/[^\w]/g,"").tolowerCase()){
+        charMap[char] =charMap[char]+ 1 ||1;
     }
-    for(let char in charMap){
-        if(charMap[char]>max){
-            max=charMap[char];
-            maxCharachter=char;
-
-        }
-    }
-    return maxCharachter;
+    return charMap;
 }
 
-algorithm="Max Charachter";
+function CheckAnagram(stringA,stringB){
+    let charMapA=buildCharMap(stringA);
+    let charMapB=buildCharMap.apply(stringB);
+
+    if(Object.keys(charMapA).length!== Object.keys(charMapA).length){
+        return false;
+    }
+    return true;
+
+}
+
+//Array chunk
+
+function ArrayChunk(arr,chunk){
+    let chunked=[];
+    for(let element of arr){
+        let lastElement =chunked[chunked.length-1];
+        if(!lastElement|| lastElement.length===chunk){
+            chunked.push([element]);
+
+        }else{
+            lastElement.push(element);
+        }
+    }
+    return chunked;
+}
+
+function Capitalization(str){
+    let words=[];
+    for(let item of str.split(' ')){
+        words.push(item[0].toUpperCase()+item.slice(1));
+    }
+    return words.join(' ');
+}
+
+console.log(Capitalization("please read carefully"));
+
+//console.table(ArrayChunk([1,2,3,4,5,6,7,8,9],3));
 
 
 
-document.getElementById("algorithm").innerHTML="Algorithm";
-document.getElementById("maxCharachter").innerHTML=normalFib('Hello world !');
+
+document.getElementById("algorithm").innerHTML=algorithm;
+document.getElementById("result").innerHTML=CheckAnagram('Hi There !!','Hi there !!!');
+
+
