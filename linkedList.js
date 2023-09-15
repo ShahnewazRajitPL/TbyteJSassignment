@@ -43,16 +43,55 @@ class linkedList{
     clear(){
         this.head =null;
     }
+
+    
+}
+
+*[Symbol.iterator](){
+    let node=this.head;
+    while(node){
+        yield node;
+        node=node.next;
+    }
+}
+
+function midPoint(list){
+    let slow =list.getFirst();
+    let fast =list.getFirst();
+
+    while(fast.next && fast.next.next){
+        slow =slow.next;
+        fast =fast.next.next;
+        
+    }
+    return slow;
+}
+
+function circular(list){
+    let slow= list.getFirst();
+    let fast=list.getFirst();
+
+    while (fast.next && fast.next.next){
+        slow=slow.next;
+        fast=fast.next.next;
+        if(slow==fast) return true;
+
+    }
+    return false;
 }
 
 let linkedList=new linkedList();
 linkedList.insertFirst(1);
 linkedList.insertFirst(2);
 linkedList.insertFirst(3);
-console.log(linkedList.nodeSize());
-console.log(linkedList.getFirst());
-console.log(linkedList.getLast());
+//console.log(linkedList.nodeSize());
+//console.log(linkedList.getFirst());
+//console.log(linkedList.getLast());
 
-linkedList.clear();
+//linkedList.clear();
 
-console.log(linkedList);
+console.log(midPoint(linkedList));
+
+for(let node of linkedList){
+    console.log(node.data+=10);
+}
