@@ -58,6 +58,28 @@ tree.root =new TreeNode(1);
         numbers.push(node.data);
     })
 
+    function levelWidth(root){
+        const arr =[root, 'r'];
+        const counters =[0];
+
+        while (arr.length >1){
+            const node =arr.shift();
+            if(node==='r'){
+                counters.push(0);
+                arr.push('r');
+            }
+            else{
+                arr.push(...node.childern);
+                counters[counters.length-1]++;
+            }
+        }
+        return counters;
+    }
+
+    console.log('BFS', numbers1);
+    console.log('DFS', numbers2);
+    console.log('width', levelWidth(tree.root));
+
 
 
     //node.remove(6);
